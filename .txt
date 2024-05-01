@@ -1,0 +1,19 @@
+nest new spleepr
+cd ./spleepr
+nest generate library common
+npm i @nestjs/mongoose mongoose
+npm i @nestjs/config
+nest generate module database -p common  ---> to add module into a project named "common"
+> libs/common
+    > database 
+        > database.module.ts
+    > common.module.ts   ---> remove it
+    > common.service.ts    ---> remove it
+    > index.ts
+    > tsconfig.lib.json
+
+
+
+nest generate module config -p common
+cmd -> mongod 
+ 
