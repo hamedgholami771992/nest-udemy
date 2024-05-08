@@ -1,0 +1,8 @@
+node_modules 
+dist
+
+
+# .dockerignore must be placed beside Dockerfile
+# but docker-compose can be in other place
+
+

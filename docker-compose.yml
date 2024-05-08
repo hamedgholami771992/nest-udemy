@@ -1,0 +1,39 @@
+services:
+
+  reservations:
+    build: 
+      context: .
+      dockerfile: ./apps/reservations/Dockerfile 
+      # we want to run our development image
+      target: development  
+    
+    # to override the CMD 
+    command: npm run start:dev reservations  
+    # to start just the reservations app
+    ports:
+      - '3000:3000'
+    
+    volumes:
+      - .:/usr/src/app
+      # we map current dir into the container for hot reloading
+    env_file:
+      - ./apps/reservations/.env
+  
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile 
+      target: development 
+    command: npm run start:dev auth  
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - ./apps/auth/.env
+
+
+
+
+  mongo:
+    image: mongo 

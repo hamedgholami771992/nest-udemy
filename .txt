@@ -17,3 +17,54 @@ nest generate module database -p common  ---> to add module into a project named
 nest generate module config -p common
 cmd -> mongod 
  
+
+
+
+nest generate app reservations   //enerate a new application within a monorepo  
+
+nest generate resource reservations  //Generate a new CRUD resource
+
+
+npm install @nestjs-pino pino-http pino-pretty  //to log every request and reponse automatically, it auto binds requests data to every log statement
+
+
+nest generate module logger
+
+
+//create a dockerfile and .dockerignore in the root and default app of the project
+//create a docker-compose file inside the root of the project 
+
+
+
+nest generate app auth
+
+nest start --watch "auth"
+
+//dockerizing auth app
+
+
+npm  i  @nestjs/passport  passport  passport-local  
+npm  i  -D  @types/passport-local 
+npm  i  @nestjs/jwt  passport-jwt  
+npm  i  -D  @types/passport-jwt 
+
+npm  i  bcrypt
+npm  i  -D  @types/bcrypt
+
+
+
+npm  i  bcryptjs   express   
+//we use bcryptjs to avoid an issue with mounting our volumes in docker(because it doesn't need any os specific dependency)
+
+npm  i  -D  @types/bcryptjs
+
+
+
+npm  i  cookie-parser   //parses cookie and adds to request object
+npm  i  -D  @types/cookie-parser
+
+
+
+npm  i  @nestjs/microservices
+
+ 

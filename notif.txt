@@ -1,0 +1,52 @@
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  try {
+    const app = await NestFactory.create(AppModule, { abortOnError: false });
+    await app.listen(3000);
+  } catch (error) {
+    console.error('An error occurred during application initialization:', error);
+    // Handle the error here
+  }
+}
+bootstrap();
+
+
+--------------------------------------------------------------------
+
+//each forRootAsync is like defining new anonymous module inside module, and it has imports array as well
+@Module({
+    imports: [
+        MongooseModule.forRootAsync({
+            imports: [ConfigModule],
+            useFactory: (configService: ConfigService) => {
+                return {
+                    uri: configService.get("MONGODB_URI")
+                }
+            },
+            inject: [ConfigService]
+        }),
+
+    ],
+})
+
+-----------------------------------------------------------------------
+
+async function bootstrap() {
+  const app = await NestFactory.create(AuthModule);  //it awaits for creating the app structure and IOC container
+  app.useGlobalPipes(new ValidationPipe({whitelist: true}))
+  app.useLogger(app.get(Logger))
+  const configService = app.get(ConfigService)  //after the app structure is built, then we can get services directly
+  await app.listen(configService.get("PORT"));
+}
+bootstrap();
+
+----------------------------------------------------------------------
+Databases need to be initialized at root project's module
+Configs need to be initialized at root project's module 
+JWT needs to be initialized at root project's module 
+
+models need to be added to database at its related module
+
+------------------------------------------------------------
