@@ -34,13 +34,13 @@ import { AUTH_SERVICE } from '@app/common/constants/services';
     //   ],
     // })
     ClientsModule.registerAsync({   //we are using configService, so we have to use registerAsync version of it
-      clients: [{
+      clients: [{ 
         name: AUTH_SERVICE,
         useFactory: (configService: ConfigService): ClientProvider => {
           return {
             transport: Transport.TCP,
             options: {
-              host: configService.get("AUTH_HOST"),
+              host: configService.get("AUTH_HOST"), 
               port: configService.get("AUTH_PORT")
             }
           }

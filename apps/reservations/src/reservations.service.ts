@@ -14,7 +14,7 @@ export class ReservationsService {
     })
   }
 
-  findAll() {
+  findAll() { 
     return this.reservationRepository.find({});
   }
 

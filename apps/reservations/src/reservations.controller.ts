@@ -14,7 +14,7 @@ export class ReservationsController {
   async create(@Body() createReservationDto: CreateReservationDto, @CurrentUser() user: UserDto) {
     return this.reservationsService.create(createReservationDto, user._id);
   }
-
+ 
   @Get()
   @UseGuards(JwtAuthGuard)
   async findAll(@CurrentUser() user: UserDto) {
@@ -34,6 +34,7 @@ export class ReservationsController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async remove(@Param('id') id: string, @CurrentUser() user: UserDto) {
     return this.reservationsService.remove(id);
   }
